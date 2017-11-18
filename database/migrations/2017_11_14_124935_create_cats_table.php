@@ -16,7 +16,7 @@ class CreateCatsTable extends Migration
         Schema::create('cats', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('date_of_bith');
+            $table->date('date_of_birth');
             $table->integer('breed_id')->unsigned()->nullable();
             $table->foreign('breed_id')->references('id')->on('breeds');
             $table->timestamps();
