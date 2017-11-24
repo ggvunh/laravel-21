@@ -3,6 +3,8 @@
 namespace Furbook\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Furbook\Breed;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (\Schema::hasTable('breeds')) {
+            $breeds = Breed::all()->pluck('name', 'id');
+            View::share('breeds', $breeds);
+        }
+        
         \Schema::defaultStringLength(191);
+
     }
 
     /**

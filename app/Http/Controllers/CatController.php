@@ -31,8 +31,8 @@ class CatController extends Controller
 
     public function create()
     {
-      $breeds = Breed::all()->pluck('name', 'id');
-      return view('cats.create', compact('breeds'));
+      // $breeds = Breed::all()->pluck('name', 'id');
+      return view('cats.create');
     }
 
     public function show(Cat $cat)
@@ -49,8 +49,8 @@ class CatController extends Controller
 
     public function edit(Cat $cat)
     {
-      $breeds = Breed::all()->pluck('name', 'id');
-      return view('cats.edit', compact('cat', 'breeds'));
+      // $breeds = Breed::all()->pluck('name', 'id');
+      return view('cats.edit', compact('cat'));
     }
 
     public function updateCat(Cat $cat)

@@ -28,3 +28,15 @@ Route::get('cats/{cat}/edit', 'CatController@edit');
 Route::put('cats/{cat}', 'CatController@updateCat');
 // delete
 Route::get('cats/{cat}/delete', 'CatController@destroy');
+
+Route::resource('photos', 'PhotoController');
+
+Route::get('test-cats', function(){
+
+    // $cats = Cat::onlyTrashed()->get();
+    // dd($cats);
+    $cat = Cat::find(5);
+    // dd($cat);
+    $cat->forceDelete();
+    dd('delete ok');
+});
