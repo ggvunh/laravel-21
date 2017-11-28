@@ -18,7 +18,7 @@ Route::get('/', 'CatController@home');
 Route::get('/cats','CatController@index');
 Route::get('/cats/breeds/{name}', 'CatController@getCatsByBreed');
 // view form
-Route::get('/cats/create', 'CatController@create');
+Route::get('/cats/create', 'CatController@create')->middleware('auth');
 Route::get('cats/{cat}', 'CatController@show');
 // recive data
 Route::post('cats', 'CatController@saveCat');
@@ -27,7 +27,7 @@ Route::get('cats/{cat}/edit', 'CatController@edit');
 // update
 Route::put('cats/{cat}', 'CatController@updateCat');
 // delete
-Route::get('cats/{cat}/delete', 'CatController@destroy');
+Route::get('cats/{cat}/delete', 'CatController@destroy')->middleware('admin');
 
 Route::resource('photos', 'PhotoController');
 
@@ -40,3 +40,6 @@ Route::get('test-cats', function(){
     $cat->forceDelete();
     dd('delete ok');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

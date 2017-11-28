@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Furbook\Cat;
 use Furbook\Breed;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class CatController extends Controller
 {
@@ -42,7 +43,9 @@ class CatController extends Controller
 
     public function saveCat()
     {
+      $currentUser = Auth::user();
       $inputs = Input::all();
+      $inputs['user_id'] = $currentUser->id;
       $cat = Cat::create($inputs);
       return redirect('/cats/' . $cat->id)->withSuccess('Cat has been create');
     }
