@@ -27,7 +27,7 @@ Route::get('cats/{cat}/edit', 'CatController@edit');
 // update
 Route::put('cats/{cat}', 'CatController@updateCat');
 // delete
-Route::get('cats/{cat}/delete', 'CatController@destroy')->middleware('admin');
+Route::get('cats/{cat}/delete', 'CatController@destroy')->middleware('auth', 'admin');
 
 Route::resource('photos', 'PhotoController');
 
@@ -43,3 +43,10 @@ Route::get('test-cats', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// API categories
+Route::post('/categories', 'CategoryController@store');
+Route::get('categories', 'CategoryController@index');
+Route::get('categories/{id}', 'CategoryController@show');
+Route::delete('categories/{id}', 'CategoryController@destroy');
+Route::patch('categories/{id}', 'CategoryController@update');
