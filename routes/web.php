@@ -50,3 +50,7 @@ Route::get('categories', 'CategoryController@index');
 Route::get('categories/{id}', 'CategoryController@show');
 Route::delete('categories/{id}', 'CategoryController@destroy');
 Route::patch('categories/{id}', 'CategoryController@update');
+
+Route::get('/ajax', function() {
+  return view('ajax');
+});
